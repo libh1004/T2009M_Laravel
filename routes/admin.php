@@ -11,6 +11,7 @@ Route::middleware(["auth","admin"])->group(function(){
     Route::get('/',[WebController::class,"home"]);
     Route::get('/about-us',[WebController::class,"aboutUs"]);
 
+
     Route::get("/categories",[CategoryController::class,"all"]);
     Route::get("/categories/new",[CategoryController::class,"form"]);
     Route::post("/categories/save",[CategoryController::class,"save"]);
