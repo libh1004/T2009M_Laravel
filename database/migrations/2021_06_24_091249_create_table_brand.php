@@ -20,6 +20,7 @@ class CreateTableBrand extends Migration
             $table->text("color");
             $table->text("description");
             $table->timestamps();
+
         });
     }
 
