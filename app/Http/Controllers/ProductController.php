@@ -13,132 +13,12 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-//    public function all($id){
-//        $categories = Category::where("id",$id);
-//        $products = Product::where("category_id",$id);
-//        return view("product.list",[
-//            "products"=>$products,
-//            "categories"=>$categories,
-//        ]);
-//    }
-////    public function productsCate($id){
-////        $products=Product::where("category_id",$id)->get();
-////        $categories = Category::where("id",$id)->get();
-////        return view("product.list",[
-////            "categories"=>$categories,
-////            "products"=>$products,
-////        ]);
-////    }
-////   public function form(){
-////       return view("product.form");
-////   }
-////   public function save(Request $request){
-////       $name = $request->get("name");
-////       $description = $request->get("description");
-////       $price = $request->get("price");
-////       $qty = $request->get("qty");
-////       $category_id = $request->get("category_id");
-////       $now = Carbon::now();
-////       DB::table("products")->insert([
-////           "name"=>$name,
-////           "description"=>$description,
-////           "price"=>$price,
-////           "qty"=>$qty,
-////           "category_id"=>$category_id,
-////           "created_at"=>$now,
-////           "updated_at"=>$now
-////       ]);
-////       return redirect()->to("/products/productsCate/".$category_id);
-////   }
-//    public function form(){
-//        $categories = Category::all();
-//        return view("product.form",[
-//          "categories" => $categories,
-//        ]);
-//    }
-//    public function save(Request $request){
-//        $request->validate([
-//            "name"=>"required",
-//            "price"=>"required|numeric|min:0",
-//            "qty"=>"required|numeric|min:0",
-//            "category_id"=>"required|numeric|min:1",
-//        ],[
-//            "name.required"=>"Vui long nhap ten san pham",
-//            "price.min"=>"Gia phai co it nhat la 0",
-//            "price.required"=>"Vui long nhap gia san pham"
-//        ]);
-//        try{
-//            Product::create([
-//                "name"=>$request->get("name"),
-//                "image"=>$request->get("image"),
-//                "description"=>$request->get("description"),
-//                "price"=>$request->get("price"),
-//                "qty"=>$request->get("qty"),
-//                "category_id"=>$request->get("category_id"),
-//            ]);
-//            return redirect("/products/all/".$request->get("category_id"));
-//        }catch (\Exception $e){
-//            abort(404);
-//        }
-//    }
-////       public function details($id){
-////            $product = Product::where("id",$id)->first();
-////            return view("product.product-details",compact("product"));
-////       }
-//    //   public function edit($id)
-//    //   {
-//    //       $product = Product::find($id);
-//    //       return view("product.edit-product",compact("product"));
-//    //   }
-//    //   public function update(Request $request){
-//    //       $product = Product::find($request->id);
-//    //       $product->name = $request->get("name");
-//    //       $product->description = $request->get("description");
-//    //       $product->price = $request->get("price");
-//    //       $product->qty = $request->get("qty");
-//    //       $product->category_id=$request->get("category_id");
-//    //       $product->save();
-//    //       return redirect()->to("/products/productsCate/".$product->category_id);
-//    //   }
-//        public function edit($id){
-//            $categories = Category::all();
-//            $product = Product::findOrFail($id);
-//            return view("product.edit-product",[
-//                "product"=>$product,
-//                "categories"=>$categories
-//            ]);
-//        }
-//        public function update(Request $request,$id){
-//            $product = Product::findOrFail($id);
-//            $request->validate([
-//                "name"=>"required",
-//            ],[
-//                "name.required"=>"Vui long nhap ten loai"
-//            ]);
-//            try{
-//                $product->update([
-//                    "name"=>$request->get("name"),
-//                ]);
-//                return redirect()->to("products");
-//            }catch (\Exception $e){
-//                abort(404);
-//            }
-//        }
-//       //delete
-//       public function delete($id){
-//           $product=Product::findOrFail($id);
-//           try{
-//               $product->delete();
-//               return redirect()->to("products");
-//           }catch (\Exception $e){
-//               abort(404);
-//           }
-//       }
     public function productsCate($id){
-//        $categories = Category::where("id",$id);
+        $categories = Category::all();
         $products = Product::where("category_id",$id)->get();
-        return view("product.list",[
+        return view("admin.product.list",[
             "products"=>$products,
+            "categories" => $categories
         ]);
     }
 //    public function all(Request $request){
@@ -188,7 +68,7 @@ class ProductController extends Controller
         $search = $request->get("search");
         $products = Product::with("Category")->search($search)->category($categoryId)->orderBy("id","desc")->paginate(20);
         $categories = Category::all();
-        return view("product.list",[
+        return view("admin.product.list",[
             "products"=>$products,
             "categories"=>$categories,
         ]);
@@ -196,7 +76,7 @@ class ProductController extends Controller
     }
     public function form(){
         $categories = Category::all();
-        return view("product.form",[
+        return view("admin.product.form",[
             "categories"=>$categories,
         ]);
     }
@@ -237,7 +117,7 @@ class ProductController extends Controller
                 "category_id"=>$request->get("category_id"),
                 "description"=>$request->get("description"),
             ]);
-            return redirect()->to("/products");
+            return redirect()->to("admin/products");
         }catch (\Exception $e){
             abort(404);
         }
@@ -245,7 +125,7 @@ class ProductController extends Controller
     public function edit($id){
         $categories = Category::all();
         $product = Product::findOrFail($id);
-        return view("product.edit-product",[
+        return view("admin.product.edit-product",[
             "categories"=>$categories,
             "product"=>$product
         ]);
@@ -271,7 +151,7 @@ class ProductController extends Controller
                 "category_id"=>$request->get("category_id"),
                 "description"=>$request->get("description"),
             ]);
-            return redirect()->to("/products");
+            return redirect()->to("admin/products");
         }catch (\Exception $e){
             abort(404);
         }
@@ -280,7 +160,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         try{
             $product->delete();
-            return redirect()->to("/products");
+            return redirect()->to("admin/products");
         }catch (\Exception $e){
             abort(404);
         }

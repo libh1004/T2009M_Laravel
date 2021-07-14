@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class WebController extends Controller
 {
@@ -49,6 +50,49 @@ class WebController extends Controller
 
     public function deleteProduct(){
         return view("ass5/products");
+    }
+
+    // them sp vao gio hang
+    public function addToCart($id){
+        // tim sp
+        $product = Product::findOrFail($id);
+        // cho sp vao gio hang - session
+        $cart = []; // mac dinh ban dau la chua co sp nao
+        if(Session::has("cart")){
+            $cart = Session::get("cart");
+        }
+        // kiem tra xem gio hang da co sp nay chua
+        if(!$this->checkCart($cart,$product)){ // neu sp chua co trong gio hang
+            $product->cart_qty = 1;// them 1 thuoc tinh cart_qty
+            $cart[] = $product; // nap vao gio hang
+        }else{
+            for($i=0;$i<count($cart);$i++){
+                if($cart[$i]->id == $product->id){
+                    $cart[$i]->cart_qty = $cart[$i]->cart_qty+1;
+                    break;
+                }
+            }
+        }
+        // gan tra lai cart vao session
+        Session::put("cart",$cart);
+        return redirect()->back();
+
+    }
+    // tim kiem san pham co trong array ko
+    private function checkCart(array $cart,Product $p){
+        foreach ($cart as $item){
+            if($item->id == $p->id)
+                return true;
+        }
+        return false;
+    }
+
+    public function cart(){
+        $cart = Session::get("cart");
+        return view("cart.cart",["cart"=>$cart]);
+    }
+    public function hello(){
+        return view("hello");
     }
 
 }

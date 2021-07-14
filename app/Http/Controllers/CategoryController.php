@@ -18,20 +18,22 @@ class CategoryController extends Controller
 
 //        dd($categories); // $category->Product -> 1 array (collection) Product object
         $brands = Brand::all();
-        return view("category.list",[
+        return view("admin.category.list",[
             "categories"=>$categories,
             "brands"=>$brands,
         ]);
     }
     public function categoriesBrand($id){
+        $brands = Brand::all();
         $categories = Category::where("brand_id",$id)->get();
-        return view("category.list",[
+        return view("admin.category.list",[
             "categories"=>$categories,
+            "brands" => $brands
         ]);
     }
     public function form(){
         $brands = Brand::all();
-        return view("category.form",[
+        return view("admin.category.form",[
             "brands"=>$brands,
         ]);
     }
@@ -49,7 +51,7 @@ class CategoryController extends Controller
                 "name"=>$request->get("name"),
                 "brand_id"=>$request->get("brand_id"),
             ]);
-            return redirect()->to("/categories");
+            return redirect()->to("admin/categories");
         }catch (\Exception $e){
             abort(404);
         }
@@ -57,7 +59,7 @@ class CategoryController extends Controller
     public function edit($id){
         $brands = Brand::all();
         $category = Category::findOrFail($id);
-        return view("category.edit-category",[
+        return view("admin.category.edit-category",[
             "category"=>$category,
             "brands"=>$brands,
         ]);
@@ -77,7 +79,7 @@ class CategoryController extends Controller
                 "name"=>$request->get("name"),
                 "brand_id"=>$request->get("brand_id"),
             ]);
-            return redirect()->to("/categories");
+            return redirect()->to("admin/categories");
         }catch (\Exception $e){
             abort(404);
         }
@@ -87,7 +89,7 @@ class CategoryController extends Controller
         $category=Category::findOrFail($id);
         try{
             $category->delete();
-            return redirect()->to("/categories");
+            return redirect()->to("admin/categories");
         }catch (\Exception $e){
             abort(404);
         }

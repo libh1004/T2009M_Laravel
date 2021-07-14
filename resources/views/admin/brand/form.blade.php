@@ -23,7 +23,7 @@
             <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-6">
-                    <form action="{{url("/brands/save")}}" method="post" enctype="multipart/form-data">
+                    <form action="{{url("admin/brands/save")}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label>Name</label>

@@ -7,9 +7,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\BrandController;
 
 // phai login moi di duoc vao cac trang sau
-//Route::middleware(["auth","admin"])->group(function(){
-//    Route::get('/',[WebController::class,"home"]);
-//    Route::get('/about-us',[WebController::class,"aboutUs"]);
+Route::middleware(["auth","admin"])->group(function(){
+    Route::get('/',[WebController::class,"home"]);
+    Route::get('/about-us',[WebController::class,"aboutUs"]);
 
 
     Route::get("/categories",[CategoryController::class,"all"]);
@@ -35,7 +35,7 @@ use App\Http\Controllers\BrandController;
     Route::post("/brands/update/{id}",[BrandController::class,"update"]);
     Route::get("/brands/delete/{id}",[BrandController::class,"delete"]);
 
-//});
+});
 
 // request -> routing |middleware|-> controller
 

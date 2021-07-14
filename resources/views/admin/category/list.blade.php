@@ -8,11 +8,11 @@
                     <h1 class="m-0">Categories</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-5">
-                    <form action="{{url("/categories")}}" method="get">
+                    <form action="{{url("admin/categories")}}" method="get">
                         <input name="search" type="text" placeholder="Search"/>
                         <select class="form-control-sm">
                             <option value="0">Select brand</option>
-                            @foreach($customer_manage as $customer_department)
+                            @foreach($brands as $brand)
                                 <option @if(app("request")->input("brand_id")==$brand->id) selected @endif value="{{$brand->id}}">{{$brand->name}}</option>
                             @endforeach
                         </select>
@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-sm-3">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{url("categories/new")}}">New category</a></li>
+                        <li class="breadcrumb-item"><a href="{{url("admin/categories/new")}}">New category</a></li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -53,14 +53,14 @@
                                 <td>{{$category->products_count}}</td>
                                 <td>{{formatDate($category->created_at)}}</td>
                                 <td>{{formatDate($category->updated_at)}}</td>
-                                <td><a href="{{url("/products/productsCate",["id"=>$category->id])}}">Details</a></td>
-                                <td><a href="{{url("/categories/edit",["id"=>$category->id])}}">Edit</a> </td>
-                                <td><a onclick="return confirm('Chac chan xoa loai {{$category->name}}?')" href="{{url("/categories/delete",["id"=>$category->id])}}">Delete</a></td>
+                                <td><a href="{{url("admin/products/productsCate",["id"=>$category->id])}}">Details</a></td>
+                                <td><a href="{{url("admin/categories/edit",["id"=>$category->id])}}">Edit</a> </td>
+                                <td><a onclick="return confirm('Chac chan xoa loai {{$category->name}}?')" href="{{url("admin/categories/delete",["id"=>$category->id])}}">Delete</a></td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
-                    {!! $categories->appends(request()->input())->links("vendor.pagination.default") !!}
+{{--                    {!! $categories->appends(request()->input())->links("vendor.pagination.default") !!}--}}
                 </div>
             </div>
         </div>

@@ -14,8 +14,8 @@ class UpdateTableUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string("role")->default("USER")->after("email");
-            $table->string("fb_id")->nullable();
+            $table->string("role")->default("USER")->after("email"); // them 1 column role sau email
+
         });
     }
 
@@ -28,7 +28,6 @@ class UpdateTableUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn("role");
-            $table->dropColumn("fb_id");
         });
     }
 }

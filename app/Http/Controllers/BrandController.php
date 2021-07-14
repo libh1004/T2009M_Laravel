@@ -13,12 +13,12 @@ class BrandController extends Controller
         $brands = Brand::withCount("Categories")->paginate(10);
 
 //        dd($brands);
-        return view("brand.list",[
+        return view("admin.brand.list",[
             "brands"=>$brands
         ]);
     }
     public function form(){
-        return view("brand.form");
+        return view("admin.brand.form");
     }
     public function save(Request $request){
         $request->validate([
@@ -48,14 +48,14 @@ class BrandController extends Controller
                 "color"=>$request->get("color"),
                 "description"=>$request->get("description"),
             ]);
-            return redirect()->to("/brands");
+            return redirect()->to("admin/brands");
         }catch (\Exception $e){
             abort(404);
         }
     }
     public function edit($id){
         $brand = Brand::findOrFail($id);
-        return view("brand.edit-brand",[
+        return view("admin.brand.edit-brand",[
             "brand"=>$brand,
         ]);
     }
@@ -88,7 +88,7 @@ class BrandController extends Controller
                "color"=>$request->get("color"),
                "description"=>$request->get("description"),
             ]);
-            return redirect()->to("/brands");
+            return redirect()->to("admin/brands");
         }catch (\Exception $e){
             abort(404);
         }
@@ -97,7 +97,7 @@ class BrandController extends Controller
         $brand = Brand::findOrFail($id);
         try{
             $brand->delete();
-            return redirect()->to("/brands");
+            return redirect()->to("admin/brands");
         }catch (\Exception $e){
             abort(404);
         }

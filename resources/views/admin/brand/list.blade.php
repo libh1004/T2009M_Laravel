@@ -9,7 +9,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{url("brands/new")}}">New brand</a></li>
+                        <li class="breadcrumb-item"><a href="{{url("admin/brands/new")}}">New brand</a></li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -47,7 +47,7 @@
                                 <td>{{formatDate($brand->updated_at)}}</td>
                                 <td><a href="{{url("admin/categories/categoriesBrand",["id"=>$brand->id])}}">Details</a></td>
                                 <td><a href="{{url("admin/brands/edit",["id"=>$brand->id])}}">Edit</a> </td>
-                                <td><a onclick="return confirm('Chac chan xoa hang {{$brand->name}}?')" href="{{url("/brands/delete",["id"=>$brand->id])}}">Delete</a></td>
+                                <td><a onclick="return confirm('Chac chan xoa hang {{$brand->name}}?')" href="{{url("admin/brands/delete",["id"=>$brand->id])}}">Delete</a></td>
                             </tr>
                         @endforeach
                         </tbody>
