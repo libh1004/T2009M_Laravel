@@ -21,6 +21,7 @@ class CreateTableBook extends Migration
             $table->smallInteger("pub_year");
             $table->tinyInteger("available");
             $table->timestamps();
+
         });
     }
 

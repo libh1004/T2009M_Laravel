@@ -16,6 +16,7 @@ class Book extends Model
         "isbn",
         "pub_year",
         "available",
+
     ];
 
     public function scopeSearch($query,$search){
