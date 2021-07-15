@@ -23,25 +23,19 @@
             <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-6">
-                    <form action="{{url("/books/save-book")}}" method="post" enctype="multipart/form-data">
+                    <form action="{{url("/books/save-book")}}" method="post">
                         @csrf
                         <div class="form-group">
                             <label>AuthorId</label>
-                            <input type="number" name="authorId" class="form-control" value="{{old("authorId")}}"/>
-                            @error("authorId")
-                            <p class="text-danger">{{$message}}</p>
-                            @enderror
+                            <input type="number" name="author_id" class="form-control" value="{{old("author_id")}}"/>
                         </div>
                         <div class="form-group">
                             <label class="text-capitalize">Title</label>
                             <input type="text" name="title" class="form-control" value="{{old("title")}}"/>
-                            @error("title")
-                            <p class="text-danger">{{$message}}</p>
-                            @enderror
                         </div>
                         <div class="form-group">
                             <label>ISBN</label>
-                            <input type="text" name="color" class="form-control" value="{{old("isbn")}}"/>
+                            <input type="text" name="isbn" class="form-control" value="{{old("isbn")}}"/>
                         </div>
                         <div class="form-group">
                             <label>Pub_year</label>

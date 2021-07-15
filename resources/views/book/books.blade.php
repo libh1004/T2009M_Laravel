@@ -1,8 +1,7 @@
+
 @extends("layout")
 @section("page_title","Books")
 @section("main")
-
-
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -11,13 +10,13 @@
                 </div><!-- /.col -->
                 <div class="col-sm-5">
                     <form action="{{url("/books")}}" method="get">
-                        <input name="title" type="text" placeholder="Search"/>
+                        <input name="search" type="text" placeholder="Search"/>
                         <button class="btn btn-primary btn-sm" type="submit">Search</button>
                     </form>
                 </div>
                 <div class="col-sm-3">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{url("/books/create-book")}}">Add new book</a></li>
+                        <li class="breadcrumb-item"><a href="{{url("books/create-book")}}">Add new book</a></li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -49,15 +48,13 @@
                                 <td>{{$book->available}}</td>
                                 <td>{{formatDate($book->created_at)}}</td>
                                 <td>{{formatDate($book->updated_at)}}</td>
-
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
-{{--                    {!! $books->appends(request()->input())->links("vendor.pagination.default") !!}--}}
+                    {!! $books->appends(request()->input())->links("vendor.pagination.default") !!}
                 </div>
             </div>
         </div>
     </section>
 @endsection
-
