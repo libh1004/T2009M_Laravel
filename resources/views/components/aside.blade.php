@@ -67,9 +67,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url("/hello") }}" class="nav-link">
+                    <a href="{{ url("/books") }}" class="nav-link">
                         <i class="nav-icon far fa-circle text-warning"></i>
-                        <p>Hello</p>
+                        <p>Book</p>
                     </a>
                 </li>
 
