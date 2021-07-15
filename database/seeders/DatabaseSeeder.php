@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
 //        Brand::factory(50)->create();
         Book::factory(50)->create();
 
+
     }
 }

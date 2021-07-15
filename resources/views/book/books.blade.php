@@ -53,6 +53,7 @@
                         </tbody>
                     </table>
                     {!! $books->appends(request()->input())->links("vendor.pagination.default") !!}
+
                 </div>
             </div>
         </div>

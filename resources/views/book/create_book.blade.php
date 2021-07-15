@@ -2,7 +2,6 @@
 @extends("layout")
 @section("page_title","Books")
 @section("main")
-
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">

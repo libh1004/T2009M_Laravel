@@ -26,4 +26,5 @@ class Book extends Model
             return $query->where("title","LIKE","%$search%");
         }
     }
+
 }
