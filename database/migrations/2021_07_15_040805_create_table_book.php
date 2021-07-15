@@ -22,7 +22,6 @@ class CreateTableBook extends Migration
             $table->tinyInteger("available");
             $table->timestamps();
 
-
         });
     }
 

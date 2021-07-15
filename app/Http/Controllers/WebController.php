@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Session;
 class WebController extends Controller
 {
 
-
     public function list_book(Request $request){
         $search = $request->get("search");
         $books = Book::all()->search($search)->paginate(10);

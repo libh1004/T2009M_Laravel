@@ -27,7 +27,6 @@ class BookFactory extends Factory
             "isbn"=> $this->faker->text(100),
             "pub_year" => random_int(1,10),
             "available" => random_int(1,15),
-
         ];
     }
 }

@@ -18,7 +18,6 @@ class Book extends Model
         "available",
 
     ];
-
     public function scopeSearch($query,$search){
         if($search == "" || $search == null){
             return $query;
